@@ -11,19 +11,27 @@ class Solution(object):
         collen = len(zombies)
         i = 0
         j = 0
-        while i <(rowlen):
-            while j <(collen):
-                if zombies[i][j] ==1:
+        jrestore = None
+        #zombies = [[1,1,0,0],
+        #           [1,1,1,0],
+        #           [0,1,1,0],
+        #           [0,0,0,1]]
+        for j in range(collen):
+            i=0
+            while i < rowlen : # i = 2, j = 0, nextcolflag = T, clusternum = 0 , jrestore = 0
+                if zombies[i][j] == 1 :
                     if nextcolflag ==False:
                         i+=1
+
                     else :
                         i-=1
-                    if nextcolflag ==True:
-                        clusternum +=1
-                        nextcolflag = False
-                        i+=2
-                        j-=1
+                        if nextcolflag ==True:
+                            clusternum +=1
+                            nextcolflag = False
+                            i+=1
+                            j=jrestore
                 else:
+                    jrestore = j
                     j+=1
                     nextcolflag = True
 
@@ -37,8 +45,8 @@ class Solution(object):
 
 def main():
     n = 6
-    zombies = [[1,1,0,0],[1,1,1,0],[0,1,1,0],[0,0,0,1],[0,0,0,0],[1,1,0,0],[0,1,1,0]]
-    #zombies = [[1,1,0,0],[1,1,1,0],[0,1,1,0],[0,0,0,1]]
+    #zombies = [[1,1,0,0],[1,1,1,0],[0,1,1,0],[0,0,0,1],[0,0,0,0],[1,1,0,0],[0,1,1,0]]
+    zombies = [[1,1,0,0],[1,1,1,0],[0,1,1,0],[0,0,0,1]]
     #zombies = [[1,1,0,0],[1,1,1,0],[0,1,1,0],[0,0,0,1]]
     #zombies = [[1,1,0,0],[1,1,1,0],[0,1,1,0],[0,0,0,1]]
 
